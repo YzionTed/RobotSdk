@@ -36,6 +36,7 @@ public class ControlActivity extends FragmentActivity {
         setContentView(R.layout.control_activity);
 
         RobotClient.onCreate();
+        RobotClient.setLog(true);
 
         mBtnGo = (Button) findViewById(R.id.btnGo);
         btnBack = (Button) findViewById(R.id.btnBack);

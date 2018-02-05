@@ -12,6 +12,10 @@ public class RobotClient {
         Robot.init(context);
     }
 
+    public static void setLog(boolean isLog) {
+        LogUtil.isDebug = isLog;
+    }
+
     public static void onCreate() {
         Robot.getInstance().onCreate();
     }
