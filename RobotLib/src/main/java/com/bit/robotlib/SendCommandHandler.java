@@ -2,7 +2,6 @@ package com.bit.robotlib;
 
 import android.content.Context;
 import android.serialport.SerialPort;
-import android.util.Log;
 
 import java.io.IOException;
 
@@ -32,7 +31,7 @@ public class SendCommandHandler extends BaseHandler {
         }
     }
 
-    public void setCmd(byte[] cmdProtocol) {
+    protected void setCmd(byte[] cmdProtocol) {
         mCmdProtocol = cmdProtocol;
     }
 }

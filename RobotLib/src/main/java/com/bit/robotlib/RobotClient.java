@@ -8,6 +8,10 @@ import android.content.Context;
 
 public class RobotClient {
 
+    public interface OnActionCallback {
+        void onActionCallback(int action, int code);
+    }
+
     public static void init(Context context) {
         Robot.init(context);
     }

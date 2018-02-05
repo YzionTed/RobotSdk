@@ -14,22 +14,22 @@ public class RobotProtocol {
     /**
      * 向前
      */
-    private static final String FORWARD_PROTOCOL = "ffaa0800335f7f";
+    private static final String FORWARD_PROTOCOL = "ffaa0800339f7f";
 
     /**
      * 后退
      */
-    private static final String BACKWARD_PROTOCOL = "ffaa0800339f7f";
+    private static final String BACKWARD_PROTOCOL = "ffaa0800335f7f";
 
     /**
      * 左转
      */
-    private static final String TURN_LEFT_PROTOCOL = "ffaa0800337f9f";
+    private static final String TURN_LEFT_PROTOCOL = "ffaa0800337f5f";
 
     /**
      * 右转
      */
-    private static final String TURN_RIGHT_PROTOCOL = "ffaa0800337f5f";
+    private static final String TURN_RIGHT_PROTOCOL = "ffaa0800337f9f";
 
     /**
      * 打开投影

@@ -9,7 +9,7 @@
         compile files('libs/serialport.jar')
     }
     
-把so库文件放到jniLibs目录下
+把so库文件放到项目的jniLibs目录下
 
 ### 步骤2：修改AndroidManifest.xml文件
 
@@ -21,7 +21,7 @@
 
 #### 在Application中初始化SDK
 
-初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
+1. 初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
 
 调用接口：
 
@@ -38,7 +38,7 @@
         RobotClient.init(this);
     }
 
-主Activity的onCreate()方法里添加初始化代码
+2. 主Activity的onCreate()方法里添加初始化代码
 
 调用接口：
 
@@ -52,7 +52,7 @@
 	    RobotClient.getInstance().onCreate();
 	}
 	
-主Activity的onDestroy()方法里添加销毁代码    
+3. 主Activity的onDestroy()方法里添加销毁代码    
 调用接口：
 
 	RobotClient.getInstance().onDestroy();
@@ -65,13 +65,15 @@
 	    RobotClient.getInstance().onDestroy();
 	}
 
+### 机器人外部接口描述
+
 #### 向前运动
 
 机器人向前运动，执行stop()可以停止运动
 
 调用接口：
 
-    RobotClient.getInstance().forward();
+    RobotClient.forward();
 
 #### 向后运动
 
@@ -79,7 +81,7 @@
 
 调用接口：
 	
-	RobotClient.getInstance().backward();
+	RobotClient.backward();
 
 #### 向左转动
 
@@ -87,7 +89,7 @@
 
 调用接口：
 
-	RobotClient.getInstance().turnLeft();
+	RobotClient.turnLeft();
    
 #### 向右转动
 
@@ -95,7 +97,7 @@
 
 调用接口：
 
-	RobotClient.getInstance().turnRight();
+	RobotClient.turnRight();
    
 #### 停止运动/退出模式
 
@@ -103,15 +105,15 @@
 
 调用接口：
 
-	RobotClient.getInstance().stop();
+	RobotClient.stop();
 	   
-#### 关闭投影
+#### 打开投影
 
 机器人打开投影仪，打开过程需要几秒时间
 
 调用接口：
 
-	RobotClient.getInstance().openSerialPort();
+	RobotClient.openSerialPort();
    
 #### 关闭投影
 
@@ -119,35 +121,35 @@
 
 调用接口：
 
-	RobotClient.getInstance().closeSerialPort();
+	RobotClient.closeSerialPort();
 
 #### 自动回去充电
 
-机器人自动寻找附近的充电桩自动回冲，执行stop()可以停止运动
+机器人自动寻找附近的充电桩自动回冲，充电桩距离机器人太远会无法识别，执行stop()可以停止运动
 
 调用接口：
 
-	RobotClient.getInstance().gotoChargePower();
+	RobotClient.gotoChargePower();
 	
-#### 旋转
+#### 原地旋转
 
 机器人根据所给角度原地旋转，执行stop()可以停止运动
 
 参数说明：
 
-degree：角度，取值[0-360]
+degree：角度大于0，小于360，取值(0-360)
 
 调用接口：
 
-	RobotClient.getInstance().rotate(int degree);
+	RobotClient.rotate(int degree);
 	
 #### 游荡模式
 
-机器人随意走动，遇到障碍物自动避开，执行stop()可以停止运动
+机器人随意走动，遇到障碍实物会自动避开，执行stop()可以停止运动
 
 调用接口：
 
-	RobotClient.getInstance().randomWalk();
+	RobotClient.randomWalk();
 	
 #### 省电模式
 
@@ -155,4 +157,4 @@ degree：角度，取值[0-360]
 
 调用接口：
 
-	RobotClient.getInstance().powerSaveMode();
+	RobotClient.powerSaveMode();

@@ -84,8 +84,7 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
     protected void onDestroy() {
         if (mReadCommandHandler != null) {
             mReadCommandHandler.stopHandle();
-            mReadCommandHandler.removeOnCommandReceivedListener(this);
-            mReadCommandHandler.removeOnCommandReceivedListener(mRoateListener);
+            mReadCommandHandler.clearLisntener();
         }
         if (mCommunicationHandler != null) {
             mCommunicationHandler.stopHandle();
@@ -177,10 +176,12 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
      * 旋转
      */
     protected void rotate(int degree) {
-        mCommunicationHandler.stopHandle();
-        mSendCommandHandler.setCmd(RobotProtocol.ROTATE_PROTOCOL(degree));
-        mSendCommandHandler.startHandle();
-        mReadCommandHandler.addOnCommandReceivedListener(mRoateListener);
+        if (degree > 0 && degree < 360) {
+            mCommunicationHandler.stopHandle();
+            mSendCommandHandler.setCmd(RobotProtocol.ROTATE_PROTOCOL(degree));
+            mSendCommandHandler.startHandle();
+            mReadCommandHandler.addOnCommandReceivedListener(mRoateListener);
+        }
     }
 
     /**

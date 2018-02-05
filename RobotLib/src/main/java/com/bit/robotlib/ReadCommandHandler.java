@@ -20,7 +20,7 @@ public class ReadCommandHandler extends BaseHandler {
         void onCmdReceived(byte[] buffer);
     }
 
-    public ReadCommandHandler(Context context, SerialPort serialPort) {
+    protected ReadCommandHandler(Context context, SerialPort serialPort) {
         super(context, serialPort);
         setRateMs(0);
     }
@@ -40,15 +40,15 @@ public class ReadCommandHandler extends BaseHandler {
         }
     }
 
-    public void removeOnCommandReceivedListener(OnCommandReceivedListener listener) {
+    protected void removeOnCommandReceivedListener(OnCommandReceivedListener listener) {
         mListenerLinkedList.remove(listener);
     }
 
-    public void addOnCommandReceivedListener(OnCommandReceivedListener listener) {
+    protected void addOnCommandReceivedListener(OnCommandReceivedListener listener) {
         mListenerLinkedList.add(listener);
     }
 
-    private void clearLisntener() {
+    protected void clearLisntener() {
         mListenerLinkedList.clear();
     }
 

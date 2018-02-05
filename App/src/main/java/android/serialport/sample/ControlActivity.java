@@ -134,7 +134,7 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.turnRight();
+                    RobotClient.turnLeft();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     RobotClient.stop();
                 }
@@ -146,7 +146,7 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.turnLeft();
+                    RobotClient.turnRight();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     RobotClient.stop();
                 }
