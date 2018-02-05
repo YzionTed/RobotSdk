@@ -45,11 +45,11 @@ dependencies {
 
     //    compile project(':serialport')
 
-    compile project(':RobotLib')
+//    compile project(':RobotLib')
 
     compile files('libs/nim-basesdk-4.7.3.jar')
     compile files('libs/nim-chatroom-4.7.3.jar')
 
-//    compile files('libs/robotlib.jar')
-//    compile files('libs/serialport.jar')
+    compile files('libs/robotlib.jar')
+    compile files('libs/serialport.jar')
 }

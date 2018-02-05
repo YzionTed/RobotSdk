@@ -24,7 +24,7 @@ public class SendCommandHandler extends BaseHandler {
     protected void handleWork() {
         try {
             if (mOutputStream != null && mCmdProtocol != null) {
-                Log.d(TAG, "CmdProtocol:" + HexUtil.bytesToStr(mCmdProtocol));
+//                LogUtil.d(TAG, "CmdProtocol:" + HexUtil.bytesToStr(mCmdProtocol));
                 mOutputStream.write(mCmdProtocol);
             }
         } catch (IOException e) {

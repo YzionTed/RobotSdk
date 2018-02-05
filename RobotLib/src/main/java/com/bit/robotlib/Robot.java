@@ -2,7 +2,6 @@ package com.bit.robotlib;
 
 import android.content.Context;
 import android.serialport.SerialPort;
-import android.util.Log;
 
 import java.io.IOException;
 import java.security.InvalidParameterException;
@@ -41,7 +40,7 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
 
     protected static Robot getInstance() {
         if (sRobot == null) {
-            throw new NullPointerException("Robot not init");
+            throw new NullPointerException("RobotClient not init");
         }
         return sRobot;
     }
@@ -210,7 +209,7 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
         public void onCmdReceived(byte[] buffer) {
             String receivedData = HexUtil.bytesToStr(buffer);
             String roateStatus = receivedData.substring(24, 26);
-            Log.d(TAG, "roateStatus:" + roateStatus);
+//            LogUtil.d(TAG, "roateStatus:" + roateStatus);
             if (roateStatus.equalsIgnoreCase("a1")) {
                 stop();
             }
@@ -220,7 +219,7 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
     @Override
     public void onCmdReceived(byte[] buffer) {
         String receivedData = HexUtil.bytesToStr(buffer);
-        Log.d(TAG, "receivedData:" + receivedData);
+//        LogUtil.d(TAG, "receivedData:" + receivedData);
     }
 
 }

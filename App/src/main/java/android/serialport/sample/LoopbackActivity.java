@@ -22,8 +22,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.bit.robotlib.HexUtil;
-
 public class LoopbackActivity extends SerialPortActivity {
 
     private static final String TAG = LoopbackActivity.class.getSimpleName();
@@ -115,7 +113,7 @@ public class LoopbackActivity extends SerialPortActivity {
     @Override
     protected void onDataReceived(byte[] buffer, int size) {
 
-        Log.d(TAG, "bytesToStr：" + HexUtil.bytesToStr(buffer));
+//        Log.d(TAG, "bytesToStr：" + HexUtil.bytesToStr(buffer));
         Log.d(TAG, "size：" + size);
 
         synchronized (mByteReceivedBackSemaphore) {
@@ -123,8 +121,8 @@ public class LoopbackActivity extends SerialPortActivity {
             StringBuilder stringBuffer = new StringBuilder();
             for (i = 0; i < size; i++) {
 
-                stringBuffer.append(HexUtil.bytesToStr(buffer));
-                Log.d(TAG, "bytesToStr：" + HexUtil.bytesToStr(buffer));
+//                stringBuffer.append(HexUtil.bytesToStr(buffer));
+//                Log.d(TAG, "bytesToStr：" + HexUtil.bytesToStr(buffer));
                 Log.d(TAG, "size：" + size);
                 if ((buffer[i] == mValueToSend) && (mByteReceivedBack == false)) {
                     mValueToSend++;

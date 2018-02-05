@@ -23,8 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.bit.robotlib.HexUtil;
-
 import java.io.IOException;
 
 public class ConsoleActivity extends SerialPortActivity {
@@ -94,7 +92,7 @@ public class ConsoleActivity extends SerialPortActivity {
         runOnUiThread(new Runnable() {
             public void run() {
                 if (mReception != null) {
-                    mReception.append(HexUtil.bytesToStr(buffer).substring(0, size));
+//                    mReception.append(HexUtil.bytesToStr(buffer).substring(0, size));
                 }
             }
         });
