@@ -19,6 +19,10 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
 //    sourceSets {
 //        main {
 //            manifest.srcFile 'AndroidManifest.xml'
@@ -43,5 +47,34 @@ dependencies {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
     compile project(':SerialPort')
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+def DEX_NAME = "robotlib"
+def DEX_PATH = "build/release/"
+
+//makeJar
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/classes.jar', configurations.compile)
+    into('build/release')
+    rename('classes.jar', DEX_NAME + ".jar")
+}
+
+makeJar.dependsOn(build)
+
+task proguard(type: proguard.gradle.ProGuardTask, dependsOn: makeJar) {
+//  输入路径
+    injars DEX_PATH + DEX_NAME + ".jar"
+//  输出路径
+    outjars DEX_PATH + DEX_NAME + "-proguard.jar"
+//  添加配置信息
+    configuration 'proguard-rules.pro'
 }
 

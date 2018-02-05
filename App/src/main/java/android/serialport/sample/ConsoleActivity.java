@@ -39,7 +39,7 @@ public class ConsoleActivity extends SerialPortActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.console);
 
-//        RobotClient.getInstance().onCreate(mSerialPort);
+//        Robot.getInstance().onCreate(mSerialPort);
         //		setTitle("Loopback test");
         mReception = (EditText) findViewById(R.id.EditTextReception);
         quit = (Button) findViewById(R.id.quit);
@@ -53,7 +53,7 @@ public class ConsoleActivity extends SerialPortActivity {
         forword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                RobotClient.getInstance().forward();
+//                Robot.getInstance().forward();
 //                try {
 //                    mOutputStream.write(RobotProtocol.FORWARD_PROTOCOL());
 //                } catch (IOException e) {
@@ -86,7 +86,7 @@ public class ConsoleActivity extends SerialPortActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        RobotClient.getInstance().onDestroy();
+//        Robot.getInstance().onDestroy();
     }
 
     @Override

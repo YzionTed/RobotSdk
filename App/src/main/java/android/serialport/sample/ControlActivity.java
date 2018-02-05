@@ -35,7 +35,7 @@ public class ControlActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.control_activity);
 
-        RobotClient.getInstance().onCreate();
+        RobotClient.onCreate();
 
         mBtnGo = (Button) findViewById(R.id.btnGo);
         btnBack = (Button) findViewById(R.id.btnBack);
@@ -54,7 +54,7 @@ public class ControlActivity extends FragmentActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RobotClient.getInstance().randomWalk();
+                RobotClient.randomWalk();
             }
         });
 
@@ -63,7 +63,7 @@ public class ControlActivity extends FragmentActivity {
             public void onClick(View v) {
                 try {
                     int d = Integer.parseInt(degree.getText().toString());
-                    RobotClient.getInstance().rotate(d);
+                    RobotClient.rotate(d);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -73,28 +73,28 @@ public class ControlActivity extends FragmentActivity {
         openProjector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RobotClient.getInstance().openProjector();
+                RobotClient.openProjector();
             }
         });
 
         closeProjector.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RobotClient.getInstance().closeProjector();
+                RobotClient.closeProjector();
             }
         });
 
         chargePowor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RobotClient.getInstance().gotoChargePower();
+                RobotClient.gotoChargePower();
             }
         });
 
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RobotClient.getInstance().stop();
+                RobotClient.stop();
             }
         });
 
@@ -109,9 +109,9 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.getInstance().forward();
+                    RobotClient.forward();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    RobotClient.getInstance().stop();
+                    RobotClient.stop();
                 }
                 return true;
             }
@@ -121,9 +121,9 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.getInstance().backward();
+                    RobotClient.backward();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    RobotClient.getInstance().stop();
+                    RobotClient.stop();
                 }
                 return true;
             }
@@ -133,9 +133,9 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.getInstance().turnRight();
+                    RobotClient.turnRight();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    RobotClient.getInstance().stop();
+                    RobotClient.stop();
                 }
                 return true;
             }
@@ -145,9 +145,9 @@ public class ControlActivity extends FragmentActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RobotClient.getInstance().turnLeft();
+                    RobotClient.turnLeft();
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    RobotClient.getInstance().stop();
+                    RobotClient.stop();
                 }
                 return true;
             }
@@ -157,6 +157,6 @@ public class ControlActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RobotClient.getInstance().onDestroy();
+        RobotClient.onDestroy();
     }
 }
