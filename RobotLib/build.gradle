@@ -62,7 +62,7 @@ def DEX_PATH = "build/release/"
 
 //makeJar
 task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/classes.jar', configurations.compile)
+    from('build/intermediates/bundles/default/classes.jar', configurations.compile)
     into('build/release')
     rename('classes.jar', DEX_NAME + ".jar")
 }
