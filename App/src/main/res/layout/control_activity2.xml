@@ -46,6 +46,12 @@
                 android:text="←"
                 android:textSize="30dp"
                 android:textStyle="bold"/>
+
+        <Button android:id="@+id/stop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="stop"/>
     </RelativeLayout>
 
     <LinearLayout android:layout_width="200dp"
@@ -93,10 +99,6 @@
                 android:layout_height="wrap_content"
                 android:text="auto walk"/>
 
-        <Button android:id="@+id/stop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="stop stop stop"/>
 
         <Button android:id="@+id/createIM_ID"
                 android:layout_width="wrap_content"
@@ -117,11 +119,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="loginIM"/>
-
-        <Button android:id="@+id/mobile_control"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="mobile_control"/>
 
     </LinearLayout>
 

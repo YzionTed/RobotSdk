@@ -82,7 +82,7 @@
             如果 SDKOptions 中提供了，取 SDKOptions 中的值。 -->
         <meta-data
             android:name="com.netease.nim.appKey"
-            android:value="key_of_your_app"/>
+            android:value="c7d64ed61462dfac25c0089ab171eaa4"/>
 
         <!-- 云信后台服务，请使用独立进程。 -->
         <service
@@ -137,7 +137,9 @@
         <activity android:name=".ConsoleActivity"></activity>
         <activity android:name=".LoopbackActivity"></activity>
         <activity android:name=".Sending01010101Activity"></activity>
-        <activity android:name=".ControlActivity">
+        <activity android:name=".ControlActivity2"></activity>
+        <activity android:name=".ControlActivity"
+                  android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

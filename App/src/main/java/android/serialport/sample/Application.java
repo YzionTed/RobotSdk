@@ -22,27 +22,44 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.serialport.SerialPort;
 import android.serialport.SerialPortFinder;
+import android.serialport.sample.util.LogUtil;
+import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
 import com.bit.robotlib.RobotClient;
 import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.Observer;
 import com.netease.nimlib.sdk.SDKOptions;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.LoginInfo;
+import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.model.IMMessage;
 import com.netease.nimlib.sdk.util.NIMUtil;
+
+import org.xutils.x;
 
 import java.io.File;
 import java.io.IOException;
 import java.security.InvalidParameterException;
+import java.util.List;
 
-public class Application extends android.app.Application {
+public class Application extends MultiDexApplication {
 
+    private static final String TAG = "Application";
     public SerialPortFinder mSerialPortFinder = new SerialPortFinder();
     private SerialPort mSerialPort = null;
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+//        String processName = NIMUtil.getProcessName(this);
+//        if (processName == null || !processName.equals("com.bit.robotsdkapp")) {
+//            return;
+//        }
+
+        x.Ext.init(this);
+
         RobotClient.init(this);
 
         // SDK初始化（启动后台服务，若已经存在用户登录信息， SDK 将完成自动登录）
@@ -53,6 +70,8 @@ public class Application extends android.app.Application {
             // 注意：以下操作必须在主进程中进行
             // 1、UI相关初始化操作
             // 2、相关Service调用
+            NIMClient.getService(MsgServiceObserve.class)
+                    .observeReceiveMessage(incomingMessageObserver, true);
         }
 
     }
@@ -125,7 +144,7 @@ public class Application extends android.app.Application {
 
     // 如果已经存在用户登录信息，返回LoginInfo，否则返回null即可
     private LoginInfo loginInfo() {
-        return null;
+        return new LoginInfo("", "");
     }
 
     /**
@@ -178,4 +197,30 @@ public class Application extends android.app.Application {
             mSerialPort = null;
         }
     }
+
+    Observer<List<IMMessage>> incomingMessageObserver =
+            new Observer<List<IMMessage>>() {
+                @Override
+                public void onEvent(List<IMMessage> messages) {
+                    // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
+
+                    for (int i = 0; i < messages.size(); i++) {
+                        String msg = messages.get(i).getContent();
+                        LogUtil.d(TAG, "messages:" + messages.get(i).getContent());
+
+                        if ("go".equalsIgnoreCase(msg)) {
+                            RobotClient.forward();
+                        } else if ("left".equalsIgnoreCase(msg)) {
+                            RobotClient.turnLeft();
+                        } else if ("right".equalsIgnoreCase(msg)) {
+                            RobotClient.turnRight();
+                        } else if ("back".equalsIgnoreCase(msg)) {
+                            RobotClient.backward();
+                        } else if ("stop".equalsIgnoreCase(msg)) {
+                            RobotClient.stop();
+                        }
+                    }
+                }
+            };
+
 }
