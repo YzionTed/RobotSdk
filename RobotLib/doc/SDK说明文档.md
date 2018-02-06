@@ -158,3 +158,10 @@ degree：角度必须大于0并且小于360，取值(0-360)
 调用接口：
 
 	RobotClient.powerSaveMode();
+	
+	
+### 保留SDK的接口不被混淆
+
+混淆配置
+
+	-keep class com.bit.robotlib.RobotClient {*;}

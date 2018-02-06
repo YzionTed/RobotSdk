@@ -480,6 +480,12 @@ protected void onDestroy() {
 
 <div><pre><code class="language-none">RobotClient.powerSaveMode();</code></pre></div>
 
+<h3 id="toc_19">保留SDK的接口不被混淆</h3>
+
+<p>混淆配置</p>
+
+<div><pre><code class="language-none">-keep class com.bit.robotlib.RobotClient {*;}</code></pre></div>
+
 
 
 
