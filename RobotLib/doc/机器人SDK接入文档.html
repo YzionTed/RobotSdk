@@ -5,7 +5,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>SDK说明文档</title>
+<title>机器人SDK接入文档</title>
 
 
 <style type="text/css">
@@ -361,21 +361,21 @@ public void onCreate() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.getInstance().onCreate();</code></pre></div>
+<div><pre><code class="language-none">RobotClient.onCreate();</code></pre></div>
 
 <p>示例代码：</p>
 
 <div><pre><code class="language-none">@Override
 protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    RobotClient.getInstance().onCreate();
+    RobotClient.onCreate();
 }</code></pre></div>
 
 <ol>
 <li><p>主Activity的onDestroy()方法里添加销毁代码<br>
 调用接口：</p>
 
-<p>RobotClient.getInstance().onDestroy();</p></li>
+<p>RobotClient.onDestroy();</p></li>
 </ol>
 
 <p>示例代码：</p>
@@ -383,7 +383,7 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 <div><pre><code class="language-none">@Override
 protected void onDestroy() {
     super.onDestroy();
-    RobotClient.getInstance().onDestroy();
+    RobotClient.onDestroy();
 }</code></pre></div>
 
 <h3 id="toc_7">机器人外部接口描述</h3>
@@ -434,7 +434,7 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.openSerialPort();</code></pre></div>
+<div><pre><code class="language-none">RobotClient.openProjector();</code></pre></div>
 
 <h4 id="toc_14">关闭投影</h4>
 
@@ -442,7 +442,7 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.closeSerialPort();</code></pre></div>
+<div><pre><code class="language-none">RobotClient.closeProjector();</code></pre></div>
 
 <h4 id="toc_15">自动回去充电</h4>
 

@@ -42,27 +42,28 @@
 
 调用接口：
 
-	RobotClient.getInstance().onCreate();
+	RobotClient.onCreate();
 
 示例代码：
 
 	@Override
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    RobotClient.getInstance().onCreate();
+	    RobotClient.onCreate();
 	}
 	
-3. 主Activity的onDestroy()方法里添加销毁代码    
+3. 主Activity的onDestroy()方法里添加销毁代码  
+
 调用接口：
 
-	RobotClient.getInstance().onDestroy();
+	RobotClient.onDestroy();
 
 示例代码：
 	
 	@Override
 	protected void onDestroy() {
 	    super.onDestroy();
-	    RobotClient.getInstance().onDestroy();
+	    RobotClient.onDestroy();
 	}
 
 ### 机器人外部接口描述
@@ -113,7 +114,7 @@
 
 调用接口：
 
-	RobotClient.openSerialPort();
+	RobotClient.openProjector();
    
 #### 关闭投影
 
@@ -121,7 +122,7 @@
 
 调用接口：
 
-	RobotClient.closeSerialPort();
+	RobotClient.closeProjector();
 
 #### 自动回去充电
 

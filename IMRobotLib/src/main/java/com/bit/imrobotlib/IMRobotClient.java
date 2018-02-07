@@ -1,0 +1,76 @@
+package com.bit.imrobotlib;
+
+import android.content.Context;
+
+/**
+ * Created by zhangjiajie on 18/2/7.
+ */
+
+public class IMRobotClient {
+
+    private static IMRobotClient sImRobotClient;
+
+    private CMDSender mCMDSender;
+    private CMDReceiver mCMDReceiver;
+
+    private Context mContext;
+
+    private String mRobotAccountId;
+
+    private IMRobotClient(Context context, String robotAccountId) {
+        mContext = context;
+        mRobotAccountId = robotAccountId;
+        mCMDSender = new CMDSender(context, robotAccountId);
+
+    }
+
+    public static void init(Context context, String robotAccountId) {
+        if (sImRobotClient == null) {
+            sImRobotClient = new IMRobotClient(context, robotAccountId);
+        }
+    }
+
+    public static void forward() {
+        Robot.getInstance().forward();
+    }
+
+    public static void backward() {
+        Robot.getInstance().backward();
+    }
+
+    public static void turnLeft() {
+        Robot.getInstance().turnLeft();
+    }
+
+    public static void turnRight() {
+        Robot.getInstance().turnRight();
+    }
+
+    public static void stop() {
+        Robot.getInstance().stop();
+    }
+
+    public static void openProjector() {
+        Robot.getInstance().openProjector();
+    }
+
+    public static void closeProjector() {
+        Robot.getInstance().closeProjector();
+    }
+
+    public static void gotoChargePower() {
+        Robot.getInstance().gotoChargePower();
+    }
+
+    public static void rotate(int degree) {
+        Robot.getInstance().rotate(degree);
+    }
+
+    public static void randomWalk() {
+        Robot.getInstance().randomWalk();
+    }
+
+    public static void powerSaveMode() {
+        Robot.getInstance().powerSaveMode();
+    }
+}
