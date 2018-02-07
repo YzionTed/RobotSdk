@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bit.imrobotlib.IMRobotClient;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
@@ -67,7 +68,8 @@ public class ControlActivity2 extends FragmentActivity {
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendIMMessage("stop");
+//                sendIMMessage("stop");
+                IMRobotClient.stop();
             }
         });
 
@@ -81,25 +83,29 @@ public class ControlActivity2 extends FragmentActivity {
         mBtnGo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendIMMessage("Go");
+//                sendIMMessage("Go");
+                IMRobotClient.forward();
             }
         });
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendIMMessage("Back");
+//                sendIMMessage("Back");
+                IMRobotClient.backward();
             }
         });
         btnRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendIMMessage("Right");
+//                sendIMMessage("Right");
+                IMRobotClient.turnRight();
             }
         });
         btnLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendIMMessage("Left");
+//                sendIMMessage("Left");
+                IMRobotClient.turnLeft();
             }
         });
 

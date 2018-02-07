@@ -2,6 +2,10 @@ package com.bit.imrobotlib;
 
 import android.content.Context;
 
+import com.netease.nimlib.sdk.msg.model.IMMessage;
+
+import java.util.List;
+
 /**
  * Created by zhangjiajie on 18/2/7.
  */
@@ -21,56 +25,64 @@ public class IMRobotClient {
         mContext = context;
         mRobotAccountId = robotAccountId;
         mCMDSender = new CMDSender(context, robotAccountId);
-
+        mCMDReceiver = new CMDReceiver(context);
     }
 
+    /**
+     * @param context
+     * @param robotAccountId 机器人云信ID(机器人的设备码)
+     */
     public static void init(Context context, String robotAccountId) {
         if (sImRobotClient == null) {
             sImRobotClient = new IMRobotClient(context, robotAccountId);
         }
     }
 
+    public static boolean handleCommand(List<IMMessage> messages) {
+        return sImRobotClient.mCMDReceiver.handleCMD(messages);
+    }
+
     public static void forward() {
-        Robot.getInstance().forward();
+        sImRobotClient.mCMDSender.forward();
     }
 
     public static void backward() {
-        Robot.getInstance().backward();
+        sImRobotClient.mCMDSender.backward();
     }
 
     public static void turnLeft() {
-        Robot.getInstance().turnLeft();
+        sImRobotClient.mCMDSender.turnLeft();
     }
 
     public static void turnRight() {
-        Robot.getInstance().turnRight();
+        sImRobotClient.mCMDSender.turnRight();
     }
 
     public static void stop() {
-        Robot.getInstance().stop();
+        sImRobotClient.mCMDSender.stop();
     }
 
     public static void openProjector() {
-        Robot.getInstance().openProjector();
+        sImRobotClient.mCMDSender.openProjector();
     }
 
     public static void closeProjector() {
-        Robot.getInstance().closeProjector();
+        sImRobotClient.mCMDSender.closeProjector();
     }
 
     public static void gotoChargePower() {
-        Robot.getInstance().gotoChargePower();
+        sImRobotClient.mCMDSender.gotoChargePower();
     }
 
     public static void rotate(int degree) {
-        Robot.getInstance().rotate(degree);
+        sImRobotClient.mCMDSender.rotate(degree);
     }
 
     public static void randomWalk() {
-        Robot.getInstance().randomWalk();
+        sImRobotClient.mCMDSender.randomWalk();
     }
 
     public static void powerSaveMode() {
-        Robot.getInstance().powerSaveMode();
+        sImRobotClient.mCMDSender.powerSaveMode();
     }
 }

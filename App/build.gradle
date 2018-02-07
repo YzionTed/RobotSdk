@@ -59,10 +59,12 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.9.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    //    compile project(':serialport')
-    compile project(':RobotLib')
+    //        compile project(':serialport')
+    //    compile project(':RobotLib')
+    //    compile project(':IMRobotLib')
     compile files('libs/nim-basesdk-4.7.3.jar')
-    compile files('libs/nim-chatroom-4.7.3.jar')
-//    compile files('libs/robotlib.jar')
-//    compile files('libs/serialport.jar')
+    //    compile files('libs/nim-chatroom-4.7.3.jar')
+    compile files('libs/robotlib.jar')
+    compile files('libs/serialport.jar')
+    compile files('libs/imrobotlib.jar')
 }

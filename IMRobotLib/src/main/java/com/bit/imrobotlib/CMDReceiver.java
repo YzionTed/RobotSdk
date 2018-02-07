@@ -54,6 +54,10 @@ public class CMDReceiver {
                     savePowerAction(command);
                     isHandle = true;
                     break;
+                } else if ("stop".equalsIgnoreCase(command.getCommand())) {
+                    stopAction(command);
+                    isHandle = true;
+                    break;
                 }
 
             } catch (Exception e) {
@@ -64,20 +68,16 @@ public class CMDReceiver {
         return isHandle;
     }
 
+    private void stopAction(Command command) {
+        RobotClient.stop();
+    }
+
     private void savePowerAction(Command command) {
-        if ("on".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.powerSaveMode();
-        } else if ("off".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.stop();
-        }
+        RobotClient.powerSaveMode();
     }
 
     private void autoWalkAction(Command command) {
-        if ("on".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.randomWalk();
-        } else if ("off".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.stop();
-        }
+        RobotClient.randomWalk();
     }
 
     private void projectorAction(Command command) {
@@ -89,11 +89,8 @@ public class CMDReceiver {
     }
 
     private void chargePowerAction(Command command) {
-        if ("on".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.gotoChargePower();
-        } else if ("off".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.stop();
-        }
+        RobotClient.gotoChargePower();
+
     }
 
     private void moveAction(Command command) {
@@ -106,8 +103,6 @@ public class CMDReceiver {
             RobotClient.turnLeft();
         } else if ("right".equalsIgnoreCase(command.getOperation())) {
             RobotClient.turnRight();
-        } else if ("stop".equalsIgnoreCase(command.getOperation())) {
-            RobotClient.stop();
         }
     }
 

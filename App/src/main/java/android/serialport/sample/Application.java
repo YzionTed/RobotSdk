@@ -22,10 +22,10 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.serialport.SerialPort;
 import android.serialport.SerialPortFinder;
-import android.serialport.sample.util.LogUtil;
 import android.support.multidex.MultiDexApplication;
 import android.text.TextUtils;
 
+import com.bit.imrobotlib.IMRobotClient;
 import com.bit.robotlib.RobotClient;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -72,6 +72,8 @@ public class Application extends MultiDexApplication {
             // 2、相关Service调用
             NIMClient.getService(MsgServiceObserve.class)
                     .observeReceiveMessage(incomingMessageObserver, true);
+
+            IMRobotClient.init(this, "robot-123456");
         }
 
     }
@@ -204,22 +206,24 @@ public class Application extends MultiDexApplication {
                 public void onEvent(List<IMMessage> messages) {
                     // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
 
-                    for (int i = 0; i < messages.size(); i++) {
-                        String msg = messages.get(i).getContent();
-                        LogUtil.d(TAG, "messages:" + messages.get(i).getContent());
+                    IMRobotClient.handleCommand(messages);
 
-                        if ("go".equalsIgnoreCase(msg)) {
-                            RobotClient.forward();
-                        } else if ("left".equalsIgnoreCase(msg)) {
-                            RobotClient.turnLeft();
-                        } else if ("right".equalsIgnoreCase(msg)) {
-                            RobotClient.turnRight();
-                        } else if ("back".equalsIgnoreCase(msg)) {
-                            RobotClient.backward();
-                        } else if ("stop".equalsIgnoreCase(msg)) {
-                            RobotClient.stop();
-                        }
-                    }
+//                    for (int i = 0; i < messages.size(); i++) {
+//                        String msg = messages.get(i).getContent();
+//                        LogUtil.d(TAG, "messages:" + messages.get(i).getContent());
+//
+//                        if ("go".equalsIgnoreCase(msg)) {
+//                            RobotClient.forward();
+//                        } else if ("left".equalsIgnoreCase(msg)) {
+//                            RobotClient.turnLeft();
+//                        } else if ("right".equalsIgnoreCase(msg)) {
+//                            RobotClient.turnRight();
+//                        } else if ("back".equalsIgnoreCase(msg)) {
+//                            RobotClient.backward();
+//                        } else if ("stop".equalsIgnoreCase(msg)) {
+//                            RobotClient.stop();
+//                        }
+//                    }
                 }
             };
 

@@ -20,6 +20,10 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
+
     sourceSets {
         main {
             jniLibs.srcDirs = ['src/main/jniLibs', 'src/main/jniLibs/imsdk', 'src/main/jniLibs/robotsdk']
@@ -29,9 +33,38 @@ android {
 }
 
 dependencies {
-    compile files('libs/nim-basesdk-4.7.3.jar')
-    compile files('libs/nim-chatroom-4.7.3.jar')
-    compile files('libs/robotlib.jar')
-    compile files('libs/serialport.jar')
+    provided files('libs/nim-basesdk-4.7.3.jar')
+    //    compile files('libs/robotlib.jar')
+    //    compile files('libs/serialport.jar')
     compile 'com.google.code.gson:gson:2.8.2'
+    provided project(':RobotLib')
+}
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+def DEX_NAME = "imrobotlib"
+def DEX_PATH = "build/release/"
+
+//makeJar
+task makeJar(type: Copy) {
+    from('build/intermediates/bundles/release/classes.jar', configurations.compile)
+    into('build/release')
+    rename('classes.jar', DEX_NAME + ".jar")
+}
+
+makeJar.dependsOn(build)
+
+task proguard(type: proguard.gradle.ProGuardTask, dependsOn: makeJar) {
+//  输入路径
+    injars DEX_PATH + DEX_NAME + ".jar"
+//  输出路径
+    outjars DEX_PATH + DEX_NAME + "-proguard.jar"
+//  添加配置信息
+    configuration 'proguard-rules.pro'
 }

@@ -9,16 +9,6 @@
 
 # ---------配置信息 BEGIN----------
 
-# 加密字符串的文件名
-keyFileName="vcxz"
-# dex的文件名
-dexFileName="zxcv"
-# Jar打包后的文件名
-lcsdkFileName="lcsdk-1.2.0"
-# key的jar
-lcKeyJarName="lc-key.jar"
-# sdk混淆后的jar
-sdkProguardJarName="sdk-dex-proguard.jar";
 
 
 # ---------METHOD BEGIN------------
@@ -73,10 +63,9 @@ installApk(){
 # ----------CMD-----------
 
 # 编译lib_master，生成混淆的Jar
-echo "编译robotlib..."
-cd RobotLib
+echo "编译imrobotlib..."
 createDir build/release
 gradle proguard
-echo "编译robotlib成功"
+echo "编译imrobotlib成功"
 
 
