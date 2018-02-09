@@ -3,12 +3,12 @@
 
 <head>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>机器人SDK接入文档</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>机器人SDK接入文档</title>
 
 
-<style type="text/css">
+    <style type="text/css">
 body {
   font-family: Helvetica, arial, sans-serif;
   font-size: 14px;
@@ -306,7 +306,8 @@ sup {
 		word-wrap: break-word;
 	}
 }
-</style>
+
+    </style>
 
 
 </head>
@@ -322,7 +323,8 @@ sup {
 <div><pre><code class="language-none">dependencies {
     compile files(&#39;libs/robotlib.jar&#39;)
     compile files(&#39;libs/serialport.jar&#39;)
-}</code></pre></div>
+}</code></pre>
+</div>
 
 <p>把so库文件放到项目的jniLibs目录下</p>
 
@@ -330,21 +332,24 @@ sup {
 
 <h4 id="toc_4">配置权限声明</h4>
 
-<div><pre><code class="language-none">&lt;permission android:name=&quot;android.permission.SERIAL_PORT&quot;/&gt;</code></pre></div>
+<div>
+    <pre><code class="language-none">&lt;permission android:name=&quot;android.permission.SERIAL_PORT&quot;/&gt;</code></pre>
+</div>
 
 <h3 id="toc_5">步骤3：在APP中添加接口代码</h3>
 
 <h4 id="toc_6">在Application中初始化SDK</h4>
 
 <ol>
-<li>初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次</li>
+    <li>初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次</li>
 </ol>
 
 <p>调用接口：</p>
 
 <div><pre><code class="language-none">RobotClient.init(Context);
 参数说明：
-Context：表示上下文Context</code></pre></div>
+Context：表示上下文Context</code></pre>
+</div>
 
 <p>示例代码：</p>
 
@@ -353,15 +358,18 @@ Context：表示上下文Context</code></pre></div>
 public void onCreate() {
     super.onCreate();
     RobotClient.init(this);
-}</code></pre></div>
+}</code></pre>
+</div>
 
 <ol>
-<li>主Activity的onCreate()方法里添加初始化代码</li>
+    <li>主Activity的onCreate()方法里添加初始化代码</li>
 </ol>
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.onCreate();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.onCreate();</code></pre>
+</div>
 
 <p>示例代码：</p>
 
@@ -369,13 +377,14 @@ public void onCreate() {
 protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     RobotClient.onCreate();
-}</code></pre></div>
+}</code></pre>
+</div>
 
 <ol>
-<li><p>主Activity的onDestroy()方法里添加销毁代码<br>
-调用接口：</p>
+    <li><p>主Activity的onDestroy()方法里添加销毁代码<br>
+        调用接口：</p>
 
-<p>RobotClient.onDestroy();</p></li>
+        <p>RobotClient.onDestroy();</p></li>
 </ol>
 
 <p>示例代码：</p>
@@ -384,7 +393,8 @@ protected void onCreate(@Nullable Bundle savedInstanceState) {
 protected void onDestroy() {
     super.onDestroy();
     RobotClient.onDestroy();
-}</code></pre></div>
+}</code></pre>
+</div>
 
 <h3 id="toc_7">机器人外部接口描述</h3>
 
@@ -394,7 +404,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.forward();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.forward();</code></pre>
+</div>
 
 <h4 id="toc_9">向后运动</h4>
 
@@ -402,7 +414,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.backward();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.backward();</code></pre>
+</div>
 
 <h4 id="toc_10">向左转动</h4>
 
@@ -410,7 +424,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.turnLeft();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.turnLeft();</code></pre>
+</div>
 
 <h4 id="toc_11">向右转动</h4>
 
@@ -418,7 +434,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.turnRight();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.turnRight();</code></pre>
+</div>
 
 <h4 id="toc_12">停止运动/退出模式</h4>
 
@@ -426,7 +444,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.stop();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.stop();</code></pre>
+</div>
 
 <h4 id="toc_13">打开投影</h4>
 
@@ -434,7 +454,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.openProjector();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.openProjector();</code></pre>
+</div>
 
 <h4 id="toc_14">关闭投影</h4>
 
@@ -442,7 +464,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.closeProjector();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.closeProjector();</code></pre>
+</div>
 
 <h4 id="toc_15">自动回去充电</h4>
 
@@ -450,7 +474,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.gotoChargePower();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.gotoChargePower();</code></pre>
+</div>
 
 <h4 id="toc_16">原地旋转</h4>
 
@@ -462,7 +488,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.rotate(int degree);</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.rotate(int degree);</code></pre>
+</div>
 
 <h4 id="toc_17">游荡模式</h4>
 
@@ -470,7 +498,9 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.randomWalk();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.randomWalk();</code></pre>
+</div>
 
 <h4 id="toc_18">省电模式</h4>
 
@@ -478,15 +508,17 @@ protected void onDestroy() {
 
 <p>调用接口：</p>
 
-<div><pre><code class="language-none">RobotClient.powerSaveMode();</code></pre></div>
+<div>
+    <pre><code class="language-none">RobotClient.powerSaveMode();</code></pre>
+</div>
 
 <h3 id="toc_19">保留SDK的接口不被混淆</h3>
 
 <p>混淆配置</p>
 
-<div><pre><code class="language-none">-keep class com.bit.robotlib.RobotClient {*;}</code></pre></div>
-
-
+<div>
+    <pre><code class="language-none">-keep class com.bit.robotlib.RobotClient {*;}</code></pre>
+</div>
 
 
 </body>
