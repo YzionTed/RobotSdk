@@ -16,12 +16,15 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 public class CMDSender {
 
     private Context mContext;
-    private String mRobotAccountId;
+    private String mAccid;
     private Gson mGson = new Gson();
 
-    public CMDSender(Context context, String robotAccountId) {
+    public CMDSender(Context context) {
         mContext = context;
-        mRobotAccountId = robotAccountId;
+    }
+
+    public void setTargetAccid(String accid) {
+        mAccid = accid;
     }
 
     private Command createMoveCommand() {
@@ -92,15 +95,21 @@ public class CMDSender {
     }
 
     public void randomWalk() {
+        Command command = new Command();
+        command.setCommand("autoWalk");
+        sendIMMessage(mGson.toJson(command));
     }
 
     public void powerSaveMode() {
+        Command command = new Command();
+        command.setCommand("savePower");
+        sendIMMessage(mGson.toJson(command));
     }
 
     private void sendIMMessage(String content) {
         // 创建文本消息
         IMMessage message = MessageBuilder.createTextMessage(
-                mRobotAccountId, // 聊天对象的 ID，如果是单聊，为用户帐号，如果是群聊，为群组 ID
+                mAccid, // 聊天对象的 ID，如果是单聊，为用户帐号，如果是群聊，为群组 ID
                 SessionTypeEnum.P2P, // 聊天类型，单聊或群组
                 content // 文本内容
         );

@@ -206,7 +206,7 @@ public class Application extends MultiDexApplication {
                 public void onEvent(List<IMMessage> messages) {
                     // 处理新收到的消息，为了上传处理方便，SDK 保证参数 messages 全部来自同一个聊天对象。
 
-                    IMRobotClient.handleCommand(messages);
+                    boolean isHandle = IMRobotClient.handleCommand(messages);
 
 //                    for (int i = 0; i < messages.size(); i++) {
 //                        String msg = messages.get(i).getContent();

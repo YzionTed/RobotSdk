@@ -19,23 +19,23 @@ public class IMRobotClient {
 
     private Context mContext;
 
-    private String mRobotAccountId;
-
-    private IMRobotClient(Context context, String robotAccountId) {
+    private IMRobotClient(Context context) {
         mContext = context;
-        mRobotAccountId = robotAccountId;
-        mCMDSender = new CMDSender(context, robotAccountId);
+        mCMDSender = new CMDSender(context);
         mCMDReceiver = new CMDReceiver(context);
     }
 
     /**
      * @param context
-     * @param robotAccountId 机器人云信ID(机器人的设备码)
      */
-    public static void init(Context context, String robotAccountId) {
+    public static void init(Context context) {
         if (sImRobotClient == null) {
-            sImRobotClient = new IMRobotClient(context, robotAccountId);
+            sImRobotClient = new IMRobotClient(context);
         }
+    }
+
+    public static void setTargetAccid(String accid) {
+        sImRobotClient.mCMDSender.setTargetAccid(accid);
     }
 
     public static boolean handleCommand(List<IMMessage> messages) {

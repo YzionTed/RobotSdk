@@ -1,72 +1,87 @@
 ## 比亦特机器人远程控制SDK接入文档
 
+### 机器人端接入说明
+
 ### 步骤1：将jar加入到libs
 
 #### Android Studio在工程中的gradle配置
 
     dependencies {
-        compile files('libs/robotlib.jar')
-        compile files('libs/serialport.jar')
+        compile files('libs/imrobotlib.jar')
     }
     
-把so库文件放到项目的jniLibs目录下
+imrobotlib.jar需要依赖网易云信sdk nim-basesdk-4.7.3.jar和云信的so库文件
 
 ### 步骤2：修改AndroidManifest.xml文件
 
 #### 配置权限声明
 
-	<permission android:name="android.permission.SERIAL_PORT"/>
+	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
 ### 步骤3：在APP中添加接口代码
 
-#### 在Application中初始化SDK
+1.初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
+
+调用接口：
+
+    IMRobotClient.init(context);
+    
+2.在接收云信消息的方法里加入代码 IMRobotClient.handleCommand(messages);用于接收和解析消息体中的命令
+
+调用接口：
+
+	IMRobotClient.handleCommand(messages)
+	返回值：boolean类型，true表示收到命令并执行，false表示没有收到命令
+
+示例
+
+	Observer<List<IMMessage>> incomingMessageObserver =
+            new Observer<List<IMMessage>>() {
+                @Override
+                public void onEvent(List<IMMessage> messages) {
+                    boolean isHandle = IMRobotClient.handleCommand(messages);
+                    //isHandle返回true表示收到命令，false表示没有收到命令
+                }
+            };
+
+3.设置目标云信ID IMRobotClient.setTargetAccid(accid)
+这里的accid为手机端的云信ID
+
+调用接口：
+
+	IMRobotClient.setTargetAccid(accid)
+
+---
+
+### 手机端接入说明
+
+### 步骤1：将jar加入到libs
+
+#### Android Studio在工程中的gradle配置
+
+    dependencies {
+        compile files('libs/imrobotlib.jar')
+    }
+    
+imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
+
+### 步骤2：修改AndroidManifest.xml文件
+
+#### 配置权限声明
+
+	<uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+
+### 步骤3：在APP中添加接口代码
 
 1. 初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
 
 调用接口：
 
-    RobotClient.init(Context);
-    参数说明：
-    Context：表示上下文Context
-
-示例代码：
-
-    //在Application的onCreate()方法里
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        RobotClient.init(this);
-    }
-
-2. 主Activity的onCreate()方法里添加初始化代码
-
-调用接口：
-
-	RobotClient.onCreate();
-
-示例代码：
-
-	@Override
-	protected void onCreate(@Nullable Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    RobotClient.onCreate();
-	}
-	
-3. 主Activity的onDestroy()方法里添加销毁代码  
-
-调用接口：
-
-	RobotClient.onDestroy();
-
-示例代码：
-	
-	@Override
-	protected void onDestroy() {
-	    super.onDestroy();
-	    RobotClient.onDestroy();
-	}
-
-### 机器人外部接口描述
+    IMRobotClient.init(context);
 
 #### 向前运动
 
@@ -74,7 +89,7 @@
 
 调用接口：
 
-    RobotClient.forward();
+    IMRobotClient.forward();
 
 #### 向后运动
 
@@ -82,7 +97,7 @@
 
 调用接口：
 	
-	RobotClient.backward();
+	IMRobotClient.backward();
 
 #### 向左转动
 
@@ -90,7 +105,7 @@
 
 调用接口：
 
-	RobotClient.turnLeft();
+	IMRobotClient.turnLeft();
    
 #### 向右转动
 
@@ -98,7 +113,7 @@
 
 调用接口：
 
-	RobotClient.turnRight();
+	IMRobotClient.turnRight();
    
 #### 停止运动/退出模式
 
@@ -106,7 +121,7 @@
 
 调用接口：
 
-	RobotClient.stop();
+	IMRobotClient.stop();
 	   
 #### 打开投影
 
@@ -114,7 +129,7 @@
 
 调用接口：
 
-	RobotClient.openProjector();
+	IMRobotClient.openProjector();
    
 #### 关闭投影
 
@@ -122,7 +137,7 @@
 
 调用接口：
 
-	RobotClient.closeProjector();
+	IMRobotClient.closeProjector();
 
 #### 自动回去充电
 
@@ -130,7 +145,7 @@
 
 调用接口：
 
-	RobotClient.gotoChargePower();
+	IMRobotClient.gotoChargePower();
 	
 #### 原地旋转
 
@@ -142,7 +157,7 @@ degree：角度必须大于0并且小于360，取值(0-360)
 
 调用接口：
 
-	RobotClient.rotate(int degree);
+	IMRobotClient.rotate(int degree);
 	
 #### 游荡模式
 
@@ -150,7 +165,7 @@ degree：角度必须大于0并且小于360，取值(0-360)
 
 调用接口：
 
-	RobotClient.randomWalk();
+	IMRobotClient.randomWalk();
 	
 #### 省电模式
 
@@ -158,11 +173,11 @@ degree：角度必须大于0并且小于360，取值(0-360)
 
 调用接口：
 
-	RobotClient.powerSaveMode();
+	IMRobotClient.powerSaveMode();
 	
 	
 ### 保留SDK的接口不被混淆
 
 混淆配置
 
-	-keep class com.bit.robotlib.RobotClient {*;}
+	-keep class com.bit.imrobotlib.IMRobotClient {*;}
