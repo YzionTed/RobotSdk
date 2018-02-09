@@ -2,6 +2,11 @@
 
 特别注意：因为imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)，所以主项目需要先按照网易云信SDK文档接入云信后，才能接入该SDK进行调试，不然编译不会通过
 
+需要依赖的库：
+
+1. nim-basesdk-4.7.3.jar和so文件（网易云信基础sdk）
+2. gson（Json解析库）
+
 ### 机器人端接入说明
 
 ### 步骤1：将jar加入到libs
@@ -12,7 +17,7 @@
         compile files('libs/imrobotlib.jar')
     }
     
-注意：imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
+注意：imrobotlib.jar 需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
 
 ### 步骤2：修改AndroidManifest.xml文件
 
