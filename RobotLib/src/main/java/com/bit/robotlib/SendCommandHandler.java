@@ -16,7 +16,7 @@ public class SendCommandHandler extends BaseHandler {
 
     protected SendCommandHandler(Context context, SerialPort serialPort) {
         super(context, serialPort);
-        setRateMs(50);
+        setRateMs(10);
     }
 
     @Override
