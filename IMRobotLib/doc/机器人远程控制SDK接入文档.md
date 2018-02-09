@@ -77,12 +77,19 @@ imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库
 
 ### 步骤3：在APP中添加接口代码
 
-1. 初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
+1.初始化SDK，应该放在Application的onCreate()方法里，只需要初始化一次
 
 调用接口：
 
     IMRobotClient.init(context);
 
+2.设置目标云信ID IMRobotClient.setTargetAccid(accid)
+这里的accid为机器人端的云信ID
+
+调用接口：
+
+	IMRobotClient.setTargetAccid(accid)
+	
 #### 向前运动
 
 机器人向前运动，执行stop()可以停止运动
@@ -175,6 +182,7 @@ degree：角度必须大于0并且小于360，取值(0-360)
 
 	IMRobotClient.powerSaveMode();
 	
+---
 	
 ### 保留SDK的接口不被混淆
 
