@@ -46,6 +46,10 @@ public class ControlActivity2 extends FragmentActivity {
     Button loginIM;
     Button stop;
     EditText accid;
+    private Button openProjector;
+    private Button closeProjector;
+    private Button chargePowor;
+    private Button walk;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,11 +63,43 @@ public class ControlActivity2 extends FragmentActivity {
         btnQuit = (Button) findViewById(R.id.btnQuit);
         loginIM = (Button) findViewById(R.id.loginIM);
         stop = (Button) findViewById(R.id.stop);
+        openProjector = (Button) findViewById(R.id.openProjector);
+        closeProjector = (Button) findViewById(R.id.closeProjector);
+        chargePowor = (Button) findViewById(R.id.chargePowor);
+        walk = (Button) findViewById(R.id.walk);
 
         createIM_ID = (Button) findViewById(R.id.createIM_ID);
         refreshToken = (Button) findViewById(R.id.refreshToken);
         accid = (EditText) findViewById(R.id.accid);
         accid.setText("mobile-123456");
+
+        walk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IMRobotClient.randomWalk();
+            }
+        });
+
+        chargePowor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IMRobotClient.gotoChargePower();
+            }
+        });
+
+        closeProjector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IMRobotClient.closeProjector();
+            }
+        });
+
+        openProjector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IMRobotClient.openProjector();
+            }
+        });
 
         stop.setOnClickListener(new View.OnClickListener() {
             @Override

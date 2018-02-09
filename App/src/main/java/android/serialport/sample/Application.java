@@ -73,7 +73,8 @@ public class Application extends MultiDexApplication {
             NIMClient.getService(MsgServiceObserve.class)
                     .observeReceiveMessage(incomingMessageObserver, true);
 
-            IMRobotClient.init(this, "robot-123456");
+            IMRobotClient.init(this);
+            IMRobotClient.setTargetAccid("robot-123456");
         }
 
     }

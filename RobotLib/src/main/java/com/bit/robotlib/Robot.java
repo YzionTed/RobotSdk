@@ -85,12 +85,15 @@ public class Robot implements ReadCommandHandler.OnCommandReceivedListener {
         if (mReadCommandHandler != null) {
             mReadCommandHandler.stopHandle();
             mReadCommandHandler.clearLisntener();
+            mReadCommandHandler.destroy();
         }
         if (mCommunicationHandler != null) {
             mCommunicationHandler.stopHandle();
+            mCommunicationHandler.destroy();
         }
         if (mSendCommandHandler != null) {
             mSendCommandHandler.stopHandle();
+            mSendCommandHandler.destroy();
         }
         closeSerialPort();
     }

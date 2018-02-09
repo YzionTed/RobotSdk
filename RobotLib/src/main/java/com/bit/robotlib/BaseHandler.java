@@ -7,6 +7,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.serialport.SerialPort;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -73,6 +74,26 @@ public abstract class BaseHandler {
                     break;
                 case MESSAGE_ONCE:
                     break;
+            }
+        }
+    }
+
+    protected void destroy() {
+        if (mHandlerThread != null) {
+            mHandlerThread.quit();
+        }
+        if (mInputStream != null) {
+            try {
+                mInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        if (mOutputStream != null) {
+            try {
+                mOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }

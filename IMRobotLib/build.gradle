@@ -18,6 +18,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 
     lintOptions {
@@ -53,7 +58,7 @@ def DEX_PATH = "build/release/"
 
 //makeJar
 task makeJar(type: Copy) {
-    from('build/intermediates/bundles/release/classes.jar', configurations.compile)
+    from('build/intermediates/bundles/debug/classes.jar', configurations.compile)
     into('build/release')
     rename('classes.jar', DEX_NAME + ".jar")
 }

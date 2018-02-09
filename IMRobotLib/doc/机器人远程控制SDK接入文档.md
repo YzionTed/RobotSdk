@@ -1,5 +1,7 @@
 ## 比亦特机器人远程控制SDK接入文档
 
+特别注意：因为imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)，所以主项目需要先按照网易云信SDK文档接入云信后，才能接入该SDK进行调试，不然编译不会通过
+
 ### 机器人端接入说明
 
 ### 步骤1：将jar加入到libs
@@ -10,7 +12,7 @@
         compile files('libs/imrobotlib.jar')
     }
     
-imrobotlib.jar需要依赖网易云信sdk nim-basesdk-4.7.3.jar和云信的so库文件
+注意：imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
 
 ### 步骤2：修改AndroidManifest.xml文件
 
@@ -36,7 +38,8 @@ imrobotlib.jar需要依赖网易云信sdk nim-basesdk-4.7.3.jar和云信的so库
 	返回值：boolean类型，true表示收到命令并执行，false表示没有收到命令
 
 示例
-
+	
+	//在云信接收消息的回调方法里接入处理命令的代码
 	Observer<List<IMMessage>> incomingMessageObserver =
             new Observer<List<IMMessage>>() {
                 @Override
@@ -65,7 +68,7 @@ imrobotlib.jar需要依赖网易云信sdk nim-basesdk-4.7.3.jar和云信的so库
         compile files('libs/imrobotlib.jar')
     }
     
-imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
+注意：imrobotlib.jar需要依赖网易云信sdk(nim-basesdk-4.7.3.jar和云信的so库文件)
 
 ### 步骤2：修改AndroidManifest.xml文件
 
