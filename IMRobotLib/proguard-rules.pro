@@ -92,6 +92,7 @@
 }
 #保留SDK的接口不被混淆
 -keep class com.bit.imrobotlib.IMRobotClient {*;}
+-keep class com.bit.imrobotlib.Command {*;}
 #保留Parcelable序列化类不被混淆
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;
