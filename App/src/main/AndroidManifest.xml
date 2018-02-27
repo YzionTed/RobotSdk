@@ -80,6 +80,8 @@
 
         <!-- APP key, 可以在这里设置，也可以在 SDKOptions 中提供。
             如果 SDKOptions 中提供了，取 SDKOptions 中的值。 -->
+
+        <!-- b723dbf65571a026afe50b82a5eec71 -->
         <meta-data
             android:name="com.netease.nim.appKey"
             android:value="c7d64ed61462dfac25c0089ab171eaa4"/>
